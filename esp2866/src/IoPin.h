@@ -30,12 +30,13 @@ class IoPin{
     };
     uint8_t getValue(){ return mode==AUTO? value : mode; }; //return value;
     String name;
-  public:
-  //unsigned long lastChange = 0;
 };
 
 class Input: public IoPin{
   uint8_t change = NONE;
+  uint8_t lastRawValue = OFF;
+  unsigned long lastDebounceTime = 0;
+  static const unsigned long debounceDelay = 50;
   public:
     Input(uint8_t pin, const char* name): IoPin(pin, name){};
     void init();

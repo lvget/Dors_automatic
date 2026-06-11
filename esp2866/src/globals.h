@@ -7,9 +7,11 @@
 #include "WebServer.h"
 #include <LittleFS.h>
 #include "IO.h"
+#include "Mp3Player.h"
 
 extern Settings settings;
 extern AppClock appClock;
 extern WebServer webServer;
+extern Mp3Player mp3Player;
 
 #endif

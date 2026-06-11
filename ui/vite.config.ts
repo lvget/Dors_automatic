@@ -9,7 +9,7 @@ import path from 'node:path'
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    outDir: '../esp2866/data',
+    outDir: '../esp2866/data/ui',
     emptyOutDir: true,
   },
   plugins: [vue(), vueDevTools(), tailwindcss()],

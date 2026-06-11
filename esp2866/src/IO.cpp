@@ -9,6 +9,7 @@
 Input switchLeft(D1, "SwL");
 Input switchRight(D2, "SwR");
 Input switchDor(D3, "SwDor"); 
+Input doorbellButton(D0, "Doorbell");
 Output lampLeft(D5, "LampL");
 Output lampRight(D6, "LampR");
 Output lampIn(D7, "LampIn");
@@ -19,6 +20,7 @@ void IO_init() {
   switchLeft.init();
   switchRight.init();
   switchDor.init();
+  doorbellButton.init();
   lampLeft.init();
   lampRight.init();
   lampIn.init();
@@ -30,6 +32,11 @@ void IO_loop() {
   switchLeft.read();
   switchRight.read();
   switchDor.read();
+  doorbellButton.read();
+
+  if (doorbellButton.isChange() && doorbellButton.isOn()) {
+    mp3Player.play("1.mp3");
+  }
 
   if(switchLeft.isChange() || switchRight.isChange() || switchDor.isChange())
   {
@@ -92,6 +99,7 @@ String IO_values(){
   doc[switchRight.name] = switchRight.getValue();
   doc[switchLeft.name] = switchLeft.getValue();
   doc[switchDor.name] = switchDor.getValue();
+  doc[doorbellButton.name] = doorbellButton.getValue();
 
   String json;
   serializeJson(doc, json);

@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { ServerState } from '@/stor'
-import { io, IoPin, PIN_MODE, PIN_MODE_TEXT } from '@/io'
+import { io, PIN_MODE, PIN_MODE_TEXT } from '@/io'
 
 
 function setSettingValue(id: string, v: any) {
@@ -34,7 +34,7 @@ function setSettingValue(id: string, v: any) {
 }
 
 function pinMode(id: string) {
-  return PIN_MODE_TEXT[ServerState.settings[id]]||'?'
+  return PIN_MODE_TEXT[ServerState.settings[id]] || '?'
 }
 </script>
 

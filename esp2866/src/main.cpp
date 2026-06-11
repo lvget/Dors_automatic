@@ -24,6 +24,7 @@ void loop() {
   appClock.update();
 
   IO_loop();
+  mp3Player.loop();
 
   webServer.loop();
 }

@@ -3,17 +3,24 @@
 void Input::init(){  
       pinMode(pin, INPUT_PULLUP);
       value = digitalRead(pin);
+      lastRawValue = value;
+      lastDebounceTime = millis();
+      change = NONE;
 }
 
 void Input::read() {
       uint8_t v = digitalRead(pin);
-      if (v != value) {
-            value = v;
-            change = v == ON?UP:DOWN;
+      if (v != lastRawValue) {
+            lastRawValue = v;
+            lastDebounceTime = millis();
+      }
+
+      if ((millis() - lastDebounceTime) >= debounceDelay && lastRawValue != value) {
+            value = lastRawValue;
+            change = value == ON?UP:DOWN;
             Serial.print(pin);
             Serial.print(" change = ");
             Serial.println(change);
-            //lastChange = millis();
       }
       else {
             change = NONE;

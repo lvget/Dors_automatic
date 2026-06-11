@@ -88,7 +88,7 @@ void sendFile() {
     Serial.print("Requested: ");
     Serial.println(path);
 
-    File file = LittleFS.open(path, "r");
+    File file = LittleFS.open("/ui" + path, "r");
     if (!file) {
       send(404, "text/plain", "Not Found");
       return;
