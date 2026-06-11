@@ -1,0 +1,19 @@
+{
+  "name": "esp2866",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "pio run",
+    "upload": "pio run --target upload",
+    "build:fs": "pio run --target buildfs",
+    "upload:fs": "pio run --target uploadfs"
+  }
+}
