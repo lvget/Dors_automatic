@@ -3,16 +3,14 @@
 
 #include <time.h>
 #include <NTPClient.h>
+#include "config.h"
 
-#define TIME_ZONE 5*60*60   // смещение от UTC в секундах
-#define daylightOffset_sec 0 // смещение на летнее время в секундах
-#define NTP_SERVER "pool.ntp.org"
-NTPClient timeClient(ntpUDP, "pool.ntp.org", 5*60*60, 60000);
+NTPClient timeClient(ntpUDP, APP_CLOCK_NTP_SERVER, APP_CLOCK_TZ_OFFSET, 60000);
 
 class SystemTime(){
 
   SystemTime(){
-    configTime(TIME_ZONE, 0, NTP_SERVER);
+    configTime(APP_CLOCK_TZ_OFFSET, 0, APP_CLOCK_NTP_SERVER);
   }
   void init(){
     //timeClient.begin();              // Запуск клиента NTP

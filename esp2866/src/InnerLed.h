@@ -2,7 +2,7 @@
 #define INNER_LED_H
 
 #include <Arduino.h>
-#define INNER_LED_PIN D4
+#include "config.h"
 
 class InnerLed {
   public: 
@@ -15,8 +15,8 @@ class InnerLed {
     }
 
     void restorePin() {
-      pinMode(INNER_LED_PIN, OUTPUT);
-      digitalWrite(INNER_LED_PIN, value);
+      pinMode(PIN_INNER_LED, OUTPUT);
+      digitalWrite(PIN_INNER_LED, value);
     }
     
     void on(){
@@ -33,7 +33,7 @@ class InnerLed {
       value = v;
       //Serial.print("InnerLed = ");
       //Serial.println(value);
-      digitalWrite(INNER_LED_PIN, value);
+      digitalWrite(PIN_INNER_LED, value);
     }
 
     void blink(unsigned long period){

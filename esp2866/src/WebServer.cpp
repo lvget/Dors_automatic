@@ -3,13 +3,9 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPUpdateServer.h>
 #include "ArduinoJson-v7.4.3.h"
+#include "config.h"
 
-#define OTA_USER         "admin"    // Логин для входа в OTA
-#define OTA_PASSWORD     "admin"    // Пароль для входа в ОТА
-//#define OTA_PATH         "/update"// Путь, который будем дописывать после ip адреса в браузере.
-#define SERVERPORT      80         // Порт для входа, он стандартный 80 это порт http
-
-ESP8266WebServer server(SERVERPORT);
+ESP8266WebServer server(WEB_SERVER_PORT);
 ESP8266HTTPUpdateServer httpUpdater;
 
 const char* HTML = "text/html";

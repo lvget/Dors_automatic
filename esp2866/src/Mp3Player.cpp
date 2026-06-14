@@ -5,6 +5,7 @@
 #include <AudioGeneratorMP3.h>
 #include <AudioOutputI2SNoDAC.h>
 #include "IO.h"
+#include "config.h"
 
 extern IO io;
 
@@ -25,7 +26,7 @@ String Mp3Player::normalizePath(const String& fileName) const {
 }
 
 String Mp3Player::mp3Path(uint16_t fileNumber) const {
-  return "/mp3/" + String(fileNumber) + ".mp3";
+  return String(MP3_FOLDER) + "/" + String(fileNumber) + MP3_EXTENSION;
 }
 
 uint16_t Mp3Player::parseMp3FileNumber(const String& fileName) const {
@@ -35,11 +36,11 @@ uint16_t Mp3Player::parseMp3FileNumber(const String& fileName) const {
     name = name.substring(slash + 1);
   }
 
-  if (!name.endsWith(".mp3")) {
+  if (!name.endsWith(MP3_EXTENSION)) {
     return 0;
   }
 
-  name.remove(name.length() - 4);
+  name.remove(name.length() - String(MP3_EXTENSION).length());
   if (name.length() == 0) {
     return 0;
   }
@@ -54,7 +55,7 @@ uint16_t Mp3Player::parseMp3FileNumber(const String& fileName) const {
 }
 
 uint16_t Mp3Player::findNextFileNumber(uint16_t startFrom) const {
-  Dir dir = LittleFS.openDir("/mp3");
+  Dir dir = LittleFS.openDir(MP3_FOLDER);
   uint16_t nearest = 0;
   uint16_t first = 0;
 
@@ -122,7 +123,7 @@ bool Mp3Player::play(const String& fileName) {
     return false;
   }
 
-  _out->SetGain(0.25f);
+  _out->SetGain(MP3_OUTPUT_GAIN);
 
   if (!_mp3->begin(_file, _out)) {
     Serial.print("MP3 playback failed: ");
@@ -145,7 +146,8 @@ bool Mp3Player::playDoorbell(uint16_t fileNumber) {
 
   uint16_t number = findNextFileNumber(_nextFileNumber);
   if (number == 0) {
-    Serial.println("No MP3 files found in /mp3");
+    Serial.print("No MP3 files found in ");
+    Serial.println(MP3_FOLDER);
     return false;
   }
 

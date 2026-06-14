@@ -1,0 +1,50 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define WIFI_SSID "your_wifi_ssid"
+#define WIFI_PASSWORD "your_wifi_password"
+
+#define OTA_USER "admin"
+#define OTA_PASSWORD "change_me"
+#define WEB_SERVER_PORT 80
+
+#define APP_VERSION "v1.2"
+
+#define APP_CLOCK_TZ_OFFSET (5 * 60 * 60)
+#define APP_CLOCK_NTP_SERVER "pool.ntp.org"
+#define APP_CLOCK_SYNC_INTERVAL_SEC 3600
+
+#define SETTINGS_VERSION 5
+#define SETTINGS_INTERVAL_LED_DEFAULT 1000
+#define SETTINGS_NIGHT_BEGIN_DEFAULT 20
+#define SETTINGS_NIGHT_END_DEFAULT 7
+#define SETTINGS_AUTO_OFF_MINUTE_DEFAULT 5
+#define SETTINGS_MP3_FILE_NUMBER_DEFAULT 0
+
+#define PIN_SWITCH_LEFT D1
+#define PIN_SWITCH_RIGHT D2
+#define PIN_SWITCH_DOOR D3
+#define PIN_DOORBELL_BUTTON D0
+#define PIN_LAMP_LEFT D5
+#define PIN_LAMP_RIGHT D6
+#define PIN_LAMP_IN D7
+#define PIN_INNER_LED D4
+
+#define IO_NAME_SWITCH_LEFT "SwL"
+#define IO_NAME_SWITCH_RIGHT "SwR"
+#define IO_NAME_SWITCH_DOOR "SwDor"
+#define IO_NAME_DOORBELL "Doorbell"
+#define IO_NAME_LAMP_LEFT "LampL"
+#define IO_NAME_LAMP_RIGHT "LampR"
+#define IO_NAME_LAMP_IN "LampIn"
+
+#define INPUT_DEBOUNCE_DELAY_MS 50
+
+#define MP3_FOLDER "/mp3"
+#define MP3_EXTENSION ".mp3"
+#define MP3_OUTPUT_GAIN 0.25f
+
+#define VK_ACCESS_TOKEN ""
+#define VK_USER_ID ""
+
+#endif

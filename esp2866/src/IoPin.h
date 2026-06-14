@@ -2,6 +2,7 @@
 #define IO_PIN_H_
 
 #include <Arduino.h>
+#include "config.h"
 
 #define OFF 1
 #define ON 0
@@ -36,7 +37,7 @@ class Input: public IoPin{
   uint8_t change = NONE;
   uint8_t lastRawValue = OFF;
   unsigned long lastDebounceTime = 0;
-  static const unsigned long debounceDelay = 50;
+  static const unsigned long debounceDelay = INPUT_DEBOUNCE_DELAY_MS;
   public:
     Input(uint8_t pin, const char* name): IoPin(pin, name){};
     void init();

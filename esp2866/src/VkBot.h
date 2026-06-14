@@ -5,11 +5,12 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClientSecure.h>
+#include "config.h"
 
 
 // ================= НАСТРОЙКИ VK =================
-String access_token = "vk1.a.t2Cx8C9pU96Wm7z3lh5UhbZHqOPgLtSzYDeZ4EQ5O8IefnHSXZTvJ2laIPBACGp7VaynqengAqHXpMy4Am3didxBiRzKvjUR5vD-Zkkds1OY6ZpGkKzzvTgbTbVZYoZ0DdFpH1efaOHKuuFN9tO6q6taWEBiG8tHA4kK9lM5QnUiLlSX41IG4Cd2AQynOO-0VsJjcXeL6NYMzQv5TcsEHg";
-String user_id = "234466278";         // ID пользователя, который получит сообщение
+String access_token = VK_ACCESS_TOKEN;
+String user_id = VK_USER_ID;         // ID пользователя, который получит сообщение
 
 // ================= ФУНКЦИЯ ОТПРАВКИ СООБЩЕНИЯ =================
 void sendVKMessage(String messageText) {

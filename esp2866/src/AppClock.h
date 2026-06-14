@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <time.h>
+#include "config.h"
 
 class AppClock {
 public:
@@ -12,7 +13,7 @@ public:
      * @param ntpServer Адрес NTP-сервера (по умолчанию "pool.ntp.org")
      * @param syncIntervalSec Интервал пересинхронизации времени в секундах (по умолчанию 3600)
      */
-    AppClock (long tzOffset, const char* ntpServer = "pool.ntp.org", unsigned long syncIntervalSec = 3600);
+    AppClock (long tzOffset, const char* ntpServer = APP_CLOCK_NTP_SERVER, unsigned long syncIntervalSec = APP_CLOCK_SYNC_INTERVAL_SEC);
 
     /**
      * Инициализация: настраивает NTP и запускает синхронизацию.

@@ -67,7 +67,7 @@ bool Settings::fromJson(String& json){
         return false;
     }
 
-    intervalLED = doc["intervalLED"]|1000;
+    intervalLED = doc["intervalLED"]|SETTINGS_INTERVAL_LED_DEFAULT;
     modeLampL = doc["LampL"]|modeLampL;
     modeLampR = doc["LampR"]|modeLampR;
     modeLampIn = doc["LampIn"]|modeLampIn;
