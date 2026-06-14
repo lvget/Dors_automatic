@@ -24,6 +24,7 @@ public:
 
   bool play(const String& fileName);
   bool play(const char* fileName);
+  bool playDoorbell(uint16_t fileNumber);
   void stop();
   void loop();
   bool isPlaying() const;
@@ -32,8 +33,12 @@ private:
   AudioGeneratorMP3* _mp3 = nullptr;
   AudioFileSourceLittleFS* _file = nullptr;
   AudioOutputI2SNoDAC* _out = nullptr;
+  uint16_t _nextFileNumber = 1;
 
   String normalizePath(const String& fileName) const;
+  String mp3Path(uint16_t fileNumber) const;
+  uint16_t findNextFileNumber(uint16_t startFrom) const;
+  uint16_t parseMp3FileNumber(const String& fileName) const;
   void release();
 };
 

@@ -7,11 +7,12 @@
 class Settings {
 
 public:
-  int ver = 4;
+  int ver = 5;
   unsigned long intervalLED = 1000;
   uint8_t nightBegin = 20;
   uint8_t nightEnd = 7;
   uint8_t autoOffMinute = 5;
+  uint16_t mp3FileNumber = 0;
 
   uint8_t modeLampL = AUTO;
   uint8_t modeLampR = AUTO;

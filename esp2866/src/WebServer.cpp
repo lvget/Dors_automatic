@@ -59,12 +59,12 @@ void handleSetSettings(){
 void handleIOCommand(){
     String lamp = server.arg("id");
     int value = server.arg("value").toInt();
-    IO_command(lamp, value);
+    io.command(lamp, value);
     send("Ok");
 }
 
 void handleIOValues(){
-  String response = IO_values();
+  String response = io.values();
   sendJson(response);
 }
 

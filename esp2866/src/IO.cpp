@@ -1,22 +1,10 @@
 
-#include "io.h"
+#include "IO.h"
 #include <Arduino.h>
 #include "globals.h"
-#include "IoPin.h"
-#include "InnerLed.h"
 //#include "VkBot.h"
 
-Input switchLeft(D1, "SwL");
-Input switchRight(D2, "SwR");
-Input switchDor(D3, "SwDor"); 
-Input doorbellButton(D0, "Doorbell");
-Output lampLeft(D5, "LampL");
-Output lampRight(D6, "LampR");
-Output lampIn(D7, "LampIn");
-InnerLed innerLed;
-
-
-void IO_init() {
+void IO::init() {
   switchLeft.init();
   switchRight.init();
   switchDor.init();
@@ -28,14 +16,17 @@ void IO_init() {
   innerLed.blink(settings.intervalLED);
 }
 
-void IO_loop() {
+void IO::loop() {
   switchLeft.read();
   switchRight.read();
   switchDor.read();
   doorbellButton.read();
 
+  innerLed.update();
+
   if (doorbellButton.isChange() && doorbellButton.isOn()) {
-    mp3Player.play("1.mp3");
+    Serial.println("Doorbell pressed");
+    mp3Player.playDoorbell(settings.mp3FileNumber);
   }
 
   if(switchLeft.isChange() || switchRight.isChange() || switchDor.isChange())
@@ -72,10 +63,10 @@ void IO_loop() {
     }
   }
 
-  innerLed.update();
+
 }
 
-void IO_setup(){
+void IO::setup(){
   innerLed.blink(settings.intervalLED);
   lampLeft.setMode(settings.modeLampL);
   lampRight.setMode(settings.modeLampR);
@@ -85,13 +76,17 @@ void IO_setup(){
   switchDor.setMode(settings.modeSwDor);
 }
 
-void IO_command(String id, int value){
+void IO::restorePins(){
+  innerLed.restorePin();
+}
+
+void IO::command(String id, int value){
   if(id == lampLeft.name)lampLeft.write(value);
   else if(id == lampRight.name)lampRight.write(value);
   else if(id == lampIn.name)lampIn.write(value);
 }
 
-String IO_values(){
+String IO::values(){
   JsonDocument doc;
   doc[lampLeft.name] = lampLeft.getValue();
   doc[lampRight.name] = lampRight.getValue();

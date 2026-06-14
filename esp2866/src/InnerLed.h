@@ -6,12 +6,17 @@
 
 class InnerLed {
   public: 
-    uint8_t value;
+    uint8_t value = HIGH;
     unsigned long prevMillis = 0;
     unsigned long period = 0;
 
     InnerLed() {
+      restorePin();
+    }
+
+    void restorePin() {
       pinMode(INNER_LED_PIN, OUTPUT);
+      digitalWrite(INNER_LED_PIN, value);
     }
     
     void on(){
@@ -26,6 +31,8 @@ class InnerLed {
 
     void set(int v){
       value = v;
+      //Serial.print("InnerLed = ");
+      //Serial.println(value);
       digitalWrite(INNER_LED_PIN, value);
     }
 

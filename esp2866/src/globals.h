@@ -13,5 +13,6 @@ extern Settings settings;
 extern AppClock appClock;
 extern WebServer webServer;
 extern Mp3Player mp3Player;
+extern IO io;
 
 #endif

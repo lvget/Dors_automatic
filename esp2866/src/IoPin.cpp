@@ -19,8 +19,8 @@ void Input::read() {
             value = lastRawValue;
             change = value == ON?UP:DOWN;
             Serial.print(pin);
-            Serial.print(" change = ");
-            Serial.println(change);
+            Serial.print(" pin = ");
+            Serial.println(value);
       }
       else {
             change = NONE;

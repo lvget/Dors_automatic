@@ -42,6 +42,7 @@ String Settings::toJson(){
   doc["nightBegin"] = nightBegin;
   doc["nightEnd"] = nightEnd;
   doc["autoOffMinute"] = autoOffMinute;
+  doc["mp3FileNumber"] = mp3FileNumber;
 
   doc["LampL"] = modeLampL;
   doc["LampR"] = modeLampR;
@@ -49,6 +50,7 @@ String Settings::toJson(){
   doc["SwR"] = modeSwR;
   doc["SwL"] = modeSwL;
   doc["SwDor"] = modeSwDor;
+  
   doc["time"] = appClock.getFormattedTime();
   doc["ver"] = ver;
   
@@ -75,8 +77,9 @@ bool Settings::fromJson(String& json){
     nightBegin = doc["nightBegin"]|nightBegin;
     nightEnd = doc["nightEnd"]|nightEnd;
     autoOffMinute = doc["autoOffMinute"]|autoOffMinute;
+    mp3FileNumber = doc["mp3FileNumber"]|mp3FileNumber;
 
     save();
-    IO_setup();
+    io.setup();
     return true;
 }
