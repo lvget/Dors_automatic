@@ -2,7 +2,6 @@
 #include "IO.h"
 #include <Arduino.h>
 #include "globals.h"
-//#include "VkBot.h"
 
 void IO::init() {
   switchLeft.init();
@@ -13,7 +12,7 @@ void IO::init() {
   lampRight.init();
   lampIn.init();
 
-  innerLed.blink(settings.intervalLED);
+  innerLed.blink(1000);
 }
 
 void IO::loop() {
@@ -26,6 +25,7 @@ void IO::loop() {
 
   if (doorbellButton.isChange() && doorbellButton.isOn()) {
     Serial.println("Doorbell pressed");
+    vkBot.sendMessage("Звонок в дверь");
     mp3Player.playDoorbell(settings.mp3FileNumber);
   }
 
@@ -56,10 +56,10 @@ void IO::loop() {
 
   if( switchDor.isChange()){
     if(switchDor.isOn()){
-      //sendVKMessage("Дверь открыта");
+      //vkBot.sendMessage("Дверь открыта");
     }
     else{
-      //sendVKMessage("Дверь закрыта");
+      //vkBot.sendMessage("Дверь закрыта");
     }
   }
 
@@ -67,7 +67,7 @@ void IO::loop() {
 }
 
 void IO::setup(){
-  innerLed.blink(settings.intervalLED);
+  innerLed.blink(1000);
   lampLeft.setMode(settings.modeLampL);
   lampRight.setMode(settings.modeLampR);
   lampIn.setMode(settings.modeLampIn);

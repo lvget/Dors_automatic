@@ -7,6 +7,8 @@
 #include "config.h"
 
 class IO {
+  friend class Settings;
+
 public:
   void init();
   void loop();

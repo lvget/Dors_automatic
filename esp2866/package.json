@@ -12,8 +12,8 @@
   },
   "scripts": {
     "build": "pio run",
-    "upload": "pio run --target upload",
-    "build:fs": "pio run --target buildfs",
-    "upload:fs": "pio run --target uploadfs"
+    "upload": "pio run -t upload",
+    "build:fs": "pio run -t buildfs",
+    "upload:fs": "pio run -t uploadfs"
   }
 }
