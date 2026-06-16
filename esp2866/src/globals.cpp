@@ -7,5 +7,6 @@ WebServer webServer = WebServer{};
 Mp3Player mp3Player = Mp3Player{};
 VkBot vkBot = VkBot{};
 IO io = IO{};
+NonBlockingHTTPClient httpClient;
 
 std::string appVersion = APP_VERSION;

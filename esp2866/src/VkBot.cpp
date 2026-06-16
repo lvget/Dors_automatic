@@ -7,8 +7,52 @@
 VkBot::VkBot() {}
 
 void VkBot::sendMessage(const String &messageText) {
+  if (enqueue(messageText)) {
+    Serial.println("VK message queued");
+  } else {
+    Serial.println("VK message queue is full");
+  }
+}
+
+void VkBot::loop() {
+  if (queueCount == 0 || millis() < nextAttemptMillis || mp3Player.isPlaying()) {
+    return;
+  }
+
+  String messageText;
+  if (dequeue(messageText)) {
+    sendQueuedMessage(messageText);
+  }
+}
+
+bool VkBot::enqueue(const String &messageText) {
+  if (queueCount >= QUEUE_SIZE) {
+    return false;
+  }
+
+  messages[queueTail] = messageText;
+  queueTail = (queueTail + 1) % QUEUE_SIZE;
+  queueCount++;
+  return true;
+}
+
+bool VkBot::dequeue(String &messageText) {
+  if (queueCount == 0) {
+    return false;
+  }
+
+  messageText = messages[queueHead];
+  messages[queueHead] = "";
+  queueHead = (queueHead + 1) % QUEUE_SIZE;
+  queueCount--;
+  return true;
+}
+
+void VkBot::sendQueuedMessage(const String &messageText) {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("Error: Wi-Fi is not connected");
+    enqueue(messageText);
+    nextAttemptMillis = millis() + 5000;
     return;
   }
 
@@ -23,6 +67,7 @@ void VkBot::sendMessage(const String &messageText) {
 
   Serial.print("[HTTP] Request to VK API...");
   https.begin(client, url);
+  https.setTimeout(1000);
 
   int httpCode = https.GET();
   if (httpCode > 0) {

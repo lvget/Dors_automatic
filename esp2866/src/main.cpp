@@ -29,5 +29,7 @@ void loop() {
   io.loop();
   mp3Player.loop();
 
+  vkBot.loop();
   webServer.loop();
+  httpClient.update();
 }
