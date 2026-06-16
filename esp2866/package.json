@@ -14,6 +14,8 @@
     "build": "pio run",
     "upload": "pio run -t upload",
     "build:fs": "pio run -t buildfs",
-    "upload:fs": "pio run -t uploadfs"
+    "upload:fs": "pio run -t uploadfs",
+    "git-push": "git add . && git commit -m \"update\" && git push origin master",
+    "git-pull": "git pull origin master"
   }
 }
