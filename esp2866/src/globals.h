@@ -8,15 +8,13 @@
 #include <LittleFS.h>
 #include "IO.h"
 #include "Mp3Player.h"
-#include "VkBot.h"
-#include "NonBlockingHTTPClient.h"
+#include "VkNotify.h"
 
 extern Settings settings;
 extern AppClock appClock;
 extern WebServer webServer;
 extern Mp3Player mp3Player;
-extern VkBot vkBot;
+extern VkNotify vkBot;
 extern IO io;
-extern NonBlockingHTTPClient httpClient;
 
 #endif
