@@ -1,0 +1,21 @@
+{
+  "name": "esp2866",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "platformio.exe run --environment nodemcuv2",
+    "upload": "pio run -t upload -t monitor --environment nodemcuv2",
+    "build:fs": "pio run -t buildfs",
+    "upload:fs": "pio run -t uploadfs",
+    "git-push": "git add . && git commit -m \"update\" && git push origin master",
+    "git-pull": "git pull origin master"
+  }
+}
